@@ -141,7 +141,7 @@ public class Chat extends Activity {
 
 			String message = arg1.getExtras().getString("message");
 			String nameI = arg1.getExtras().getString("name");
-			if(nameI == name){
+			if(nameI.equals(name)){
 				HashMap<String,String> map = new HashMap<String,String>();
 				map.put("sentence", message);
 				conversation.add(map);

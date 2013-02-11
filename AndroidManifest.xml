@@ -13,7 +13,9 @@
     <permission
         android:name="com.flaquir4.simplechat.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
+	<uses-permission android:name="android.permission.GET_TASKS"/>
 
+    
     <uses-permission android:name="com.flaquir4.simplechat.permission.C2D_MESSAGE" />
     <!-- App receives GCM messages. -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
