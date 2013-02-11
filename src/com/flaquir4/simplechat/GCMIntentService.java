@@ -62,7 +62,7 @@ public class GCMIntentService extends GCMBaseIntentService {
         String message = intent.getExtras().getString("price");
         String name = intent.getExtras().getString("Name");
         
-       FileOutputStream fos;
+ /*      FileOutputStream fos;
 	try {
 		fos = openFileOutput(getString(R.string.app_name)+name, Context.MODE_APPEND|Context.MODE_PRIVATE);
 	    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));
@@ -77,9 +77,9 @@ public class GCMIntentService extends GCMBaseIntentService {
 	} catch (IOException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
-	}
+	}*/
         
-        displayMessage(context, message);
+        displayMessage(context, message, name);
         // notifies user
         generateNotification(context, message);
     }
@@ -91,7 +91,7 @@ public class GCMIntentService extends GCMBaseIntentService {
     protected void onDeletedMessages(Context context, int total) {
         Log.i(TAG, "Received deleted messages notification");
         String message = "deleted";
-        displayMessage(context, message);
+   ///     displayMessage(context, message);
         // notifies user
         generateNotification(context, message);
     }

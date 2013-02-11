@@ -140,12 +140,38 @@ public class Chat extends Activity {
 		public void onReceive(Context arg0, Intent arg1) {
 
 			String message = arg1.getExtras().getString("message");
-			HashMap<String,String> map = new HashMap<String,String>();
-			map.put("sentence", message);
-			conversation.add(map);
-			listView.setAdapter(adapter);
-			listView.setSelection(listView.getAdapter().getCount()-1);
-			
+			String nameI = arg1.getExtras().getString("name");
+			if(nameI == name){
+				HashMap<String,String> map = new HashMap<String,String>();
+				map.put("sentence", message);
+				conversation.add(map);
+				try {
+					writer.write(message+"\n");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				listView.setAdapter(adapter);
+				listView.setSelection(listView.getAdapter().getCount()-1);
+			}
+			else{
+			      FileOutputStream fos;
+			  	try {
+			  		fos = openFileOutput(getString(R.string.app_name)+nameI, Context.MODE_APPEND|Context.MODE_PRIVATE);
+			  	    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));
+			  	    
+			  	    writer.write(message+"\n");
+			  	    writer.flush();
+			  	    writer.close();
+
+			  	} catch (FileNotFoundException e) {
+			  		// TODO Auto-generated catch block
+			  		e.printStackTrace();
+			  	} catch (IOException e) {
+			  		// TODO Auto-generated catch block
+			  		e.printStackTrace();
+			  	}
+			}
 		}
 
 	};
@@ -159,7 +185,7 @@ public class Chat extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 		super.onDestroy();
 	}
 
